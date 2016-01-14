@@ -26,8 +26,11 @@ if grep -q BLOCKLIST /etc/squid3/squid.conf; then
 	cat /etc/squid3/squid.conf
 fi	
 
-
-
 /usr/sbin/squid3 -z
-/usr/sbin/squid3 -N -d 1
+
+if [[ "${PROXY_DEBUG:-x}" != "x" ]]; then
+	/usr/sbin/squid3 -N -d 1
+else
+	/usr/sbin/squid3 -N
+fi
 
