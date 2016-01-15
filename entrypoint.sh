@@ -19,6 +19,11 @@ if grep -q BLOCKLIST /etc/squid3/squid.conf; then
 	else
 		echo "You may provide PROXY_ALLOWED_DSTDOMAINS environment variable to limit which domains are accessible"
 	fi
+	if [[ "${PROXY_ALLOWED_DSTDOMAINS_REGEX:-x}" != "x" ]]; then
+		result=$(echo -e "$result    acl allowedDomains dstdom_regex $PROXY_ALLOWED_DSTDOMAINS_REGEX\n")
+	else
+		echo "You may provide PROXY_ALLOWED_DSTDOMAINS_REGEX environment variable to limit which domains are accessible"
+	fi
 	if [[ "$result" == "" ]]; then
 		sed '/allowedHosts/d' -i /etc/squid3/squid.conf
 	fi
