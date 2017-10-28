@@ -4,7 +4,7 @@ Minimal docker image with [Squid] that only proxies authenticated requests and (
 
 ### Usage
 ```
-docker run -e HTTP_PROXY_PASSWORD=password -e youcruit/auth-squid
+docker run -e HTTP_PROXY_PASSWORD=password -e youcruit/squid-auth
 ```
 
 When accessing the proxy, proxy user will be ```proxyuser```, and password will be whatever you set in ```HTTP_PROXY_PASSWORD```
